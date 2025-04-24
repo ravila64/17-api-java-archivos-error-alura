@@ -1,5 +1,9 @@
 package com.alura.screenmatch.principal;
 
+import com.alura.screenmatch.modelos.Titulo;
+import com.alura.screenmatch.modelos.TituloOMDb;
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -31,6 +35,12 @@ public class PrincipalConBusqueda {
                 .build();
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println("Response "+response.body());
+        String json= response.body();
+        System.out.println("Response "+ json);
+
+        Gson gson = new Gson();
+        //Titulo miTitulo = gson.fromJson(json, Titulo.class);
+        TituloOMDb miTituloOMDb = gson.fromJson(json, TituloOMDb.class);
+        System.out.println(miTituloOMDb);
     }
 }
