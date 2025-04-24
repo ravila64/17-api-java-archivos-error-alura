@@ -1,0 +1,7 @@
+LINK DE LA API
+https://www.omdbapi.com/
+
+herramientas para ver los datos
+postman
+Insominia
+
