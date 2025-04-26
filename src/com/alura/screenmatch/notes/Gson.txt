@@ -6,4 +6,8 @@
 6. opcion +, luego  add JARs OR DIRECTORY, busar directorio donde lo dejo el .jar
 7. Despues OK
 8. Luego en el programa ya puede utilizar la biblioeteca Gson
-
+9. Leer articulo de: USAR ESTA GUIA EN INGLES
+                     https://github.com/google/gson/blob/main/UserGuide.md
+10. tema. JSON Field Naming Support
+11. no deja buscar palabras compuestas, arreglo que se debe hacer
+12. Si mo existe la pelicula, mirar en la API, que devuelve

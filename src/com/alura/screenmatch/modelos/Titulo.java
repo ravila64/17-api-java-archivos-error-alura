@@ -1,8 +1,9 @@
 package com.alura.screenmatch.modelos;
 
 import com.google.gson.annotations.SerializedName;
+import jdk.jshell.execution.Util;
 
-public class Titulo implements Comparable<Titulo>{
+public class Titulo implements Comparable<Titulo> {
     @SerializedName("Title")
     private String nombre;
     @SerializedName("Year")
@@ -10,12 +11,30 @@ public class Titulo implements Comparable<Titulo>{
     private boolean incluidoEnElPlan;
     private double sumaDeLasEvaluaciones;
     private int totalDeEvaluaciones;
-    //@SerializedName("Runtime")  ojo esta String y necesito int, fix?
+    @SerializedName("Runtime")  // ojo esta String y necesito int, fix?
     private int duracionEnMinutos;
 
     public Titulo(String nombre, int fechaDeLanzamiento) {
         this.nombre = nombre;
         this.fechaDeLanzamiento = fechaDeLanzamiento;
+    }
+
+    public Titulo(TituloOMDb miTituloOMDb) {
+        Utilities util = new Utilities();
+        this.nombre = miTituloOMDb.title();
+        String numMinutos ="0";
+        String fechaL = miTituloOMDb.year();
+        String fechaLanza = "0";
+        if (!fechaL.contains("N/A")) {
+            fechaLanza = util.extraerNumeros(fechaL);
+        }
+        this.fechaDeLanzamiento = Integer.valueOf(fechaLanza);
+
+        String enMinutos = miTituloOMDb.runtime();
+        if (!enMinutos.contains("N/A")) {
+           numMinutos = util.extraerNumeros(enMinutos);
+        }
+        this.duracionEnMinutos = Integer.valueOf(numMinutos);
     }
 
     public String getNombre() {
@@ -54,17 +73,17 @@ public class Titulo implements Comparable<Titulo>{
         this.duracionEnMinutos = duracionEnMinutos;
     }
 
-    public void muestraFichaTecnica(){
+    public void muestraFichaTecnica() {
         System.out.println("Nombre de la película: " + nombre);
         System.out.println("Año de lanzamiento: " + fechaDeLanzamiento);
     }
 
-    public void evalua(double nota){
+    public void evalua(double nota) {
         sumaDeLasEvaluaciones += nota;
         totalDeEvaluaciones++;
     }
 
-    public double calculaMediaEvaluaciones(){
+    public double calculaMediaEvaluaciones() {
         return sumaDeLasEvaluaciones / totalDeEvaluaciones;
     }
 
@@ -78,6 +97,7 @@ public class Titulo implements Comparable<Titulo>{
         return "Titulo{" +
                 "nombre='" + nombre + '\'' +
                 ", fechaDeLanzamiento=" + fechaDeLanzamiento +
+                ", duracionEnMinutos=" +duracionEnMinutos+
                 '}';
     }
 }
