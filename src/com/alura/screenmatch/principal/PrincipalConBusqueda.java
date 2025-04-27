@@ -7,6 +7,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -50,6 +51,12 @@ public class PrincipalConBusqueda {
             System.out.println(miTituloOMDb);   // asume que se imprime miTituloOMDb.toString()
             Titulo miTitulo = new Titulo(miTituloOMDb);
             System.out.println("Titulo ya convertido " + miTitulo.toString());
+            // grabacion de datos en un archivo
+            FileWriter escritura = new FileWriter("peliculas.txt");
+            escritura.write(miTitulo.toString());
+            System.out.println("Grabacion ok en archivo : peliculas.txt");
+            escritura.close();
+
         } catch (NumberFormatException e) {
             System.out.println("Ocurrio un error " + e.getMessage());
         } catch (IllegalArgumentException  | NullPointerException e) {
