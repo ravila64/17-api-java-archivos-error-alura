@@ -29,7 +29,8 @@ public class PrincipalConBusqueda {
         LeerArchivos leerArchivos= new LeerArchivos();
 
         //Gson gson = new Gson();
-        // maneja una politica de Camel_Case, example title, viene de la API, "Title", year viene con "Year"
+        // maneja una politica de UPPER_CAMEL_CASE, example title, viene de la API, "Title", year viene con "Year"
+        // .setPrettyPrinting()  = utiliza para formateo elegante en los json.
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
                 .setPrettyPrinting()
@@ -97,7 +98,7 @@ public class PrincipalConBusqueda {
         //System.out.println("Grabacion ok en archivo : peliculas.txt");
         // listar el archivo json generado
         if(!leerArchivos.leerFichero("titulos.json")){
-            System.out.println("No existe archivo json, o no ha sido creado ...");
+            System.out.println("No existe archivo json, no ha sido creado !!!...");
         }
         System.out.println("fin del programa");
     }
