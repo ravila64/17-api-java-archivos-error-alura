@@ -1,21 +1,24 @@
-package com.alura.screenmatch.files;
+package com.alura.screenmatch.utilities;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class LeerFicheroJson {
-    public static void main(String[] args) {
+public class LeerArchivos {
+    public boolean leerFichero(String file) {
         try {
-            File archivo = new File("colores.json");
+            File archivo = new File(file);
             Scanner scanner = new Scanner(archivo);
+            System.out.println("Mostrar contenido del fichero "+file);
             while (scanner.hasNextLine()) {
                 String linea = scanner.nextLine();
                 System.out.println(linea);
             }
             scanner.close();
+            return true;
         } catch (FileNotFoundException e) {
-            System.out.println("Archivo no encontrado! "+e.getMessage());
+            System.out.println("Archivo " + file + " No encontrado! " + e.getMessage());
+            return false;
         }
     }
 }
